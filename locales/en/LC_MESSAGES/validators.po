@@ -1,0 +1,232 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: validators\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-10-20 12:04+0300\n"
+"PO-Revision-Date: 2020-05-17 14:42+0300\n"
+"Last-Translator: Mikhael Erypalov\n"
+"Language-Team: English\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz\n"
+"X-Loco-Source-Locale: en\n"
+"X-Loco-Project-Id: 77765\n"
+"X-Loco-Api-Version: 1.0.24 20200515-1"
+
+#: loco:5dac23dfc38e0f1b365efc62
+msgid "The data type is not valid. Expected: \"%types%\"!"
+msgstr "The data type is not valid. Expected: \"%types%\"!"
+
+#: loco:5dbeef96ed0cfa5db25d1c12
+msgid ""
+"The checked value \"%value%\" is less than or equal to the minimum allowed "
+"value \"%min%\"!"
+msgstr ""
+"The checked value \"%value%\" is less than or equal to the minimum allowed "
+"value \"%min%\"!"
+
+#: loco:5dbeefe1ed0cfa5db25d1c14
+msgid ""
+"The checked value \"%value%\" is less than the minimum allowed value "
+"\"%min%\"!"
+msgstr ""
+"The checked value \"%value%\" is less than the minimum allowed value "
+"\"%min%\"!"
+
+#: loco:5dbef012ed0cfa5d79722512
+msgid "Error when counting the number of elements in the value \"%value%\"!"
+msgstr "Error when counting the number of elements in the value \"%value%\"!"
+
+#: loco:5dbef08ded0cfa5d5c237ee3
+msgid ""
+"The checked value \"%value%\" is greater than or equal to the maximum value "
+"\"%max%\"!"
+msgstr ""
+"The checked value \"%value%\" is greater than or equal to the maximum value "
+"\"%max%\"!"
+
+#: loco:5dbef194ed0cfa5d8d2e6bc2
+msgid ""
+"The checked value \"%value%\" is greater than the maximum value \"%max%\"!"
+msgstr ""
+"The checked value \"%value%\" is greater than the maximum value \"%max%\"!"
+
+#: loco:5dbef234ed0cfa5db25d1c16
+msgid "The value is required and cannot be empty!"
+msgstr "The value is required and cannot be empty!"
+
+#: loco:5dbef2d9ed0cfa5db25d1c18
+msgid "The pattern must not be an empty string!"
+msgstr "The pattern must not be an empty string!"
+
+#: loco:5dbef300ed0cfa5de8731882
+msgid "An internal error occurred while using template \"%pattern%\"!"
+msgstr "An internal error occurred while using template \"%pattern%\"!"
+
+#: loco:5dbef343ed0cfa5e2d5d4e53
+msgid "The entered value \"%value%\" does not match the pattern \"%pattern%\"!"
+msgstr ""
+"The entered value \"%value%\" does not match the pattern \"%pattern%\"!"
+
+#: loco:5dc69f444d3dd7352a2bd184
+msgid "The checked value \"%value%\" is not an integer decimal number!"
+msgstr "The checked value \"%value%\" is not an integer decimal number!"
+
+#: loco:5dc6a0044d3dd735122a2532
+msgid "The checked value \"%value%\" is not a float decimal number!"
+msgstr "The checked value \"%value%\" is not a float decimal number!"
+
+#: loco:5dc6a04d4d3dd7358b1eddf2
+msgid "The checked value \"%value%\" is not an octal integer!"
+msgstr "The checked value \"%value%\" is not an octal integer!"
+
+#: loco:5dc6a0764d3dd7352a2bd186
+msgid "The checked value \"%value%\" is not an integer hexadecimal number!"
+msgstr "The checked value \"%value%\" is not an integer hexadecimal number!"
+
+#: loco:5dc6a0cf4d3dd735264fc773
+msgid "The checked value \"%value%\" is not a binary integer!"
+msgstr "The checked value \"%value%\" is not a binary integer!"
+
+#: loco:5dc6a0eb4d3dd7358a3448b3
+msgid "The checked value \"%value%\" is not an number!"
+msgstr "The checked value \"%value%\" is not an number!"
+
+#: loco:5dc6a4454d3dd735d77425fb
+msgid "Email \"%value%\" is not correct!"
+msgstr "Email \"%value%\" is not correct!"
+
+#: loco:5dc6ac9a4d3dd73785128903
+msgid "IP address \"%value%\" is not correct!"
+msgstr "IP address \"%value%\" is not correct!"
+
+#: loco:5dc7fb314d3dd76c77792e22
+msgid "An exception has been raised within the callback!"
+msgstr "An exception has been raised within the callback!"
+
+#: loco:5dc7fb764d3dd76cd15bbb73
+msgid "The input value \"%value%\" was not checked!"
+msgstr "The input value \"%value%\" was not checked!"
+
+#: loco:5dc817424d3dd7708666aa02
+msgid "The checked value \"%value%\" is not a valid date!"
+msgstr "The checked value \"%value%\" is not a valid date!"
+
+#: loco:5dc818114d3dd7712c32d5e2
+msgid ""
+"The checked value \"%value%\" does not match the date format \"%format%\"!"
+msgstr ""
+"The checked value \"%value%\" does not match the date format \"%format%\"!"
+
+#: loco:5dc9572a4d3dd72aa3106a82
+msgid ""
+"The checked date \"%value%\" does not match the specified step \"%step%\" "
+"from the initial date \"%startDate%\"!"
+msgstr ""
+"The checked date \"%value%\" does not match the specified step \"%step%\" "
+"from the initial date \"%startDate%\"!"
+
+#: loco:5dc965da4d3dd72da325e432
+msgid ""
+"The checked value \"%value%\" does not match the step \"%step%\" from the "
+"initial value \"%startingPoint%\"!"
+msgstr ""
+"The checked value \"%value%\" does not match the step \"%step%\" from the "
+"initial value \"%startingPoint%\"!"
+
+#: loco:5ec11996ed0cfa129c5cc322
+msgid "A token was not found to compare the value!"
+msgstr "A token was not found to compare the value!"
+
+#: loco:5ec119c2ed0cfa12f96195b2
+msgid "The compared values \"%value%\" and \"%token%\" do not match!"
+msgstr "The compared values \"%value%\" and \"%token%\" do not match!"
+
+#: loco:5ec11be7ed0cfa12c1323573
+msgid "The desired value \"%value%\" was not found in the list!"
+msgstr "The desired value \"%value%\" was not found in the list!"
+
+#: loco:5ec11c9bed0cfa12c04b2854
+msgid ""
+"In the \"%dataType%\" data type, the number of elements cannot be counted!"
+msgstr ""
+"In the \"%dataType%\" data type, the number of elements cannot be counted!"
+
+#: loco:5ec11d80ed0cfa12fa3cda94
+msgid ""
+"The checked uri \"%value%\" is not a valid uri with the specified "
+"verification settings!"
+msgstr ""
+"The checked uri \"%value%\" is not a valid uri with the specified "
+"verification settings!"
+
+#: loco:5ec11d91ed0cfa12f96195b4
+msgid "The checked uri \"%value%\" contains an invalid schema!"
+msgstr "The checked uri \"%value%\" contains an invalid schema!"
+
+#: loco:5ec11da0ed0cfa12fa3cda97
+msgid "The checked uri \"%value%\" contains an invalid host!"
+msgstr "The checked uri \"%value%\" contains an invalid host!"
+
+#: loco:5ec11daded0cfa13c90aefd2
+msgid "The checked uri \"%value%\" contains an invalid port!"
+msgstr "The checked uri \"%value%\" contains an invalid port!"
+
+#: loco:5ec11db9ed0cfa132b47a7f3
+msgid "The checked uri \"%value%\" contains an invalid path!"
+msgstr "The checked uri \"%value%\" contains an invalid path!"
+
+#: loco:5ec11dc4ed0cfa132b47a7f5
+msgid "The checked uri \"%value%\" contains an invalid query!"
+msgstr "The checked uri \"%value%\" contains an invalid query!"
+
+#: loco:5ec11dd1ed0cfa13da656d82
+msgid "The checked uri \"%value%\" contains an invalid fragment!"
+msgstr "The checked uri \"%value%\" contains an invalid fragment!"
+
+#: loco:5ec11ddfed0cfa13ac431a65
+msgid "The uri \"%value%\" being checked lacks a required scheme!"
+msgstr "The uri \"%value%\" being checked lacks a required scheme!"
+
+#: loco:5ec11de9ed0cfa136c12e002
+msgid "The uri \"%value%\" being checked lacks a required host!"
+msgstr "The uri \"%value%\" being checked lacks a required host!"
+
+#: loco:5ec11df4ed0cfa13912d1db4
+msgid "The uri \"%value%\" being checked lacks a required path!"
+msgstr "The uri \"%value%\" being checked lacks a required path!"
+
+#: loco:5ec11dfeed0cfa13c90aefd4
+msgid "The uri \"%value%\" being checked lacks a required query!"
+msgstr "The uri \"%value%\" being checked lacks a required query!"
+
+#: loco:5ec11e0aed0cfa136c12e004
+msgid "The uri \"%value%\" being checked lacks a required fragment!"
+msgstr "The uri \"%value%\" being checked lacks a required fragment!"
+
+#: loco:5ec11e15ed0cfa138f4af8b3
+msgid "The checked uri \"%value%\" is not an absolute reference!"
+msgstr "The checked uri \"%value%\" is not an absolute reference!"
+
+#: loco:5ec11e21ed0cfa13ac431a67
+msgid "The uri \"%value%\" being checked is not a network path reference!"
+msgstr "The uri \"%value%\" being checked is not a network path reference!"
+
+#: loco:5ec11e2eed0cfa13ac431a69
+msgid "The checked uri \"%value%\" is not an absolute path reference!"
+msgstr "The checked uri \"%value%\" is not an absolute path reference!"
+
+#: loco:5ec11e3aed0cfa1407415764
+msgid "The uri \"%value%\" being checked is not a relative path reference!"
+msgstr "The uri \"%value%\" being checked is not a relative path reference!"
+
+#: loco:5ec11e44ed0cfa13d827f612
+msgid "The checked uri \"%value%\" is not a relative reference!"
+msgstr "The checked uri \"%value%\" is not a relative reference!"
+
+#: loco:5ec11e72ed0cfa1408569f42
+msgid "The checked value \"%value%\" does not match the UUID format!"
+msgstr "The checked value \"%value%\" does not match the UUID format!"

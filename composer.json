@@ -1,0 +1,47 @@
+{
+    "name"             : "estasi/validator",
+    "description"      : "Validation classes for data validation, and the ability to link validators to create complex validation chains",
+    "keywords"         : [
+        "estasi",
+        "psr",
+        "psr-4",
+        "psr-12",
+        "validator"
+    ],
+    "minimum-stability": "stable",
+    "license"          : "BSD-3-Clause",
+    "authors"          : [
+        {
+            "name" : "Mikhail Erypalov",
+            "email": "mikaxxl@yandex.ru",
+            "role" : "developer"
+        }
+    ],
+    "config"           : {
+        "sort-packages"      : true,
+        "optimize-autoloader": true
+    },
+    "require"          : {
+        "php"                  : "^7.4",
+        "ext-mbstring"         : "*",
+        "ext-intl"             : "*",
+        "estasi/plugin-manager": "^1",
+        "estasi/utility"       : "^1",
+        "php-ds/php-ds"        : "dev-master"
+    },
+    "autoload"         : {
+        "psr-4": {
+            "Estasi\\Validator\\": "src/"
+        }
+    },
+    "autoload-dev"     : {
+        "psr-4": {
+            "EstasiTest\\Validator\\": "test/"
+        }
+    },
+    "suggest"          : {
+        "estasi/translator"        : "^0 || ^1 translations of validator error messages",
+        "symfony/validator"        : "^5.0 extends the data validation capabilities of the main validator using Symfony validators",
+        "laminas/laminas-validator": "^2.5 extends the data validation capabilities of the main validator using Laminas validators"
+    }
+}
