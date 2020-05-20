@@ -109,6 +109,14 @@ final class Chain implements Interfaces\Chain
         return $isValid;
     }
 
+    /**
+     * @inheritDoc
+     */
+    public function getValidators(): iterable
+    {
+        return $this->validators->copy();
+    }
+
     public function __clone()
     {
         $validators       = $this->validators->toArray();
