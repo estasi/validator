@@ -92,4 +92,14 @@ final class Each extends Abstracts\Validator
 
         return true;
     }
+
+    /**
+     * Returns the validator
+     *
+     * @return \Estasi\Validator\Interfaces\Validator
+     */
+    public function getValidator(): Validator
+    {
+        return $this->validator;
+    }
 }
