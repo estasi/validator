@@ -29,6 +29,9 @@
         "estasi/utility"       : "^1",
         "php-ds/php-ds"        : "dev-master"
     },
+    "require-dev"      : {
+        "phpunit/phpunit": "^7.0.1"
+    },
     "autoload"         : {
         "psr-4": {
             "Estasi\\Validator\\": "src/"
