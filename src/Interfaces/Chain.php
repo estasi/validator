@@ -25,6 +25,13 @@ interface Chain extends Validator, Countable
     public const WITHOUT_BREAK_ON_FAILURE = false;
 
     /**
+     * Returns the validator queue and the breakOnFailure value of this validator
+     *
+     * @return iterable<array> [\Estasi\Validator\Interfaces\Validator, bool]
+     */
+    public function getValidators(): iterable;
+
+    /**
      * Attaches the validator to the queue
      *
      * If breakChainOnFailure is true, then if the validator fails, the next validator in the chain, if one exists,
