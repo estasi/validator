@@ -4,26 +4,33 @@ declare(strict_types=1);
 
 namespace Estasi\Validator;
 
-use Estasi\Utility\Interfaces\Charset;
-use Estasi\Utility\Interfaces\VariableType;
+use Estasi\Utility\{
+    Interfaces\Charset,
+    Interfaces\VariableType
+};
+use RuntimeException;
 
+use function compact;
 use function is_string;
 use function mb_strlen;
 
 /**
  * Class StringLength
  *
+ * @property-read int    $min
+ * @property-read int    $max
+ * @property-read string $encoding
  * @package Estasi\Validator
  */
 final class StringLength extends Abstracts\Validator implements Interfaces\Min, Interfaces\Max
 {
+    public const OPT_ENCODING = 'encoding';
     // default values for constructor parameters
     public const NO_LENGTH_LIMITATION = -1;
     public const DEFAULT_ENCODING     = Charset::UTF_8;
 
     private GreaterThan $greaterThan;
     private ?LessThan   $lessThan;
-    private string      $encoding;
 
     /**
      * StringLength constructor.
@@ -36,19 +43,28 @@ final class StringLength extends Abstracts\Validator implements Interfaces\Min, 
      * @param iterable<string, mixed>|null $options  Secondary validator options, such as the Translator, the length of
      *                                               the error message, hiding the value being checked, defining your
      *                                               own error messages, and so on.
+     *
+     * @throws \RuntimeException if min is greater than max
      */
     public function __construct(
         int $min = 0,
         int $max = self::NO_LENGTH_LIMITATION,
         string $encoding = self::DEFAULT_ENCODING,
         iterable $options = null
-    ) {
-        $this->greaterThan = new GreaterThan($min < 0 ? 0 : $min, GreaterThan::INCLUSIVELY, $options);
+    )
+    {
+        $min = $min < 0 ? 0 : $min;
+        $max = $max < self::NO_LENGTH_LIMITATION ? self::NO_LENGTH_LIMITATION : $max;
+        if ($min > $max) {
+            throw new RuntimeException(sprintf('Invalid comparison interval: %s > %s!', $min, $max));
+        }
+
+        $this->greaterThan = new GreaterThan($min, GreaterThan::INCLUSIVELY, $options);
         $this->lessThan    = $max > self::NO_LENGTH_LIMITATION
             ? new LessThan($max, LessThan::INCLUSIVELY, $options)
             : null;
-        $this->encoding    = $encoding;
-        parent::__construct(...$this->getValidOptionsForParent($options));
+
+        parent::__construct(...$this->createProperties($options, compact('min', 'max', 'encoding')));
         $this->initErrorMessagesVars([self::MESSAGE_VAR_TYPES_EXPECTED => VariableType::STRING]);
     }
 

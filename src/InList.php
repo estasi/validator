@@ -46,7 +46,7 @@ final class InList extends Abstracts\Validator
     ) {
         $this->list   = new Vector($list);
         $this->strict = $strict;
-        parent::__construct(...$this->getValidOptionsForParent($options));
+        parent::__construct(...$this->createProperties($options));
         $this->initErrorMessagesTemplates(
             [self::E_NOT_FOUND => 'The desired value "%value%" was not found in the list!']
         );

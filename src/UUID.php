@@ -9,6 +9,8 @@ use Ds\Map;
 /**
  * Class UUID
  *
+ * Wrapper for the Estasi\Validator\Regex validator with the specified uuid pattern
+ *
  * @package Estasi\Validator
  */
 final class UUID extends Abstracts\Validator

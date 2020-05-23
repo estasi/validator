@@ -86,7 +86,7 @@ final class Boolval extends Abstracts\Validator
     public function __construct(int $flags = self::WITHOUT_ADDITIONAL_VERIFICATION_PARAMETERS, iterable $options = null)
     {
         $this->setFlags($flags);
-        parent::__construct(...$this->getValidOptionsForParent($options));
+        parent::__construct(...$this->createProperties($options));
         $this->initErrorMessagesTemplates([self::E_IS_EMPTY => 'The value is required and cannot be empty!']);
         $this->initErrorMessagesVars([self::MESSAGE_VAR_TYPES_EXPECTED => self::ALLOWED_VARIABLE_TYPES]);
     }

@@ -9,6 +9,7 @@ use DateTimeInterface;
 use Estasi\Utility\Interfaces\VariableType;
 use IntlDateFormatter;
 
+use function compact;
 use function date_create;
 use function gettype;
 use function method_exists;
@@ -18,6 +19,7 @@ use function ucfirst;
 /**
  * Class Date
  *
+ * @property-read string|null $format
  * @package Estasi\Validator
  */
 final class Date extends Abstracts\Validator
@@ -33,8 +35,6 @@ final class Date extends Abstracts\Validator
     public const E_INVALID_DATE = 'eInvalidDate';
     public const E_FALSE_FORMAT = 'eFalseFormat';
 
-    private ?string $format;
-
     /**
      * Date constructor.
      *
@@ -45,8 +45,7 @@ final class Date extends Abstracts\Validator
      */
     public function __construct(?string $format = self::WITHOUT_FORMAT, iterable $options = null)
     {
-        $this->format = $format;
-        parent::__construct(...$this->getValidOptionsForParent($options));
+        parent::__construct(...$this->createProperties($options, compact('format')));
         $this->initErrorMessagesTemplates(
             [
                 self::E_INVALID_DATE => 'The checked value "%value%" is not a valid date!',
@@ -68,9 +67,8 @@ final class Date extends Abstracts\Validator
     }
 
     /**
-     * @param string|int|float|array|DateTimeInterface|IntlDateFormatter $value
-     *
-     * @param null                                                       $context
+     * @param string|int|float|string[]|DateTimeInterface|IntlDateFormatter $value
+     * @param null                                                          $context
      *
      * @return bool
      */

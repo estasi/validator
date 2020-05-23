@@ -4,11 +4,15 @@ declare(strict_types=1);
 
 namespace Estasi\Validator;
 
+use function compact;
+
 use const PHP_INT_MAX;
 
 /**
  * Class LessThan
  *
+ * @property-read float $max
+ * @property-read bool  $inclusive
  * @package Estasi\Validator
  */
 final class LessThan extends Abstracts\Validator implements Interfaces\Max, Interfaces\Inclusive
@@ -20,8 +24,6 @@ final class LessThan extends Abstracts\Validator implements Interfaces\Max, Inte
     public const E_NOT_LESS_THAN           = 'eNotLessThan';
     public const E_NOT_LESS_THAN_INCLUSIVE = 'eNotLessThanInclusive';
 
-    private float       $max;
-    private bool        $inclusive;
     private IsCountable $isCountable;
 
     /**
@@ -37,10 +39,8 @@ final class LessThan extends Abstracts\Validator implements Interfaces\Max, Inte
      */
     public function __construct($max = PHP_INT_MAX, bool $inclusive = self::NOT_INCLUSIVE, iterable $options = null)
     {
-        $this->max         = $this->convertNumericValueToFloat($max, self::OPT_MAX);
-        $this->inclusive   = $inclusive;
-        $this->isCountable = new IsCountable($options);
-        parent::__construct(...$this->getValidOptionsForParent($options));
+        $max = $this->convertNumericValueToFloat($max, self::OPT_MAX);
+        parent::__construct(...$this->createProperties($options, compact('max', 'inclusive')));
         $this->initErrorMessagesTemplates(
             [
                 self::E_NOT_LESS_THAN           => 'The checked value "%value%" is greater than or equal to the maximum value "%max%"!',
@@ -48,6 +48,7 @@ final class LessThan extends Abstracts\Validator implements Interfaces\Max, Inte
             ]
         );
         $this->initErrorMessagesVars([self::OPT_MAX => $this->max]);
+        $this->isCountable = new IsCountable($options);
     }
 
 

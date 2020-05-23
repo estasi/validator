@@ -4,11 +4,15 @@ declare(strict_types=1);
 
 namespace Estasi\Validator;
 
+use function compact;
+
 use const PHP_INT_MIN;
 
 /**
  * Class GreaterThan
  *
+ * @property-read float $min
+ * @property-read bool  $inclusive
  * @package Estasi\Validator
  */
 final class GreaterThan extends Abstracts\Validator implements Interfaces\Min, Interfaces\Inclusive
@@ -37,10 +41,8 @@ final class GreaterThan extends Abstracts\Validator implements Interfaces\Min, I
      */
     public function __construct($min = PHP_INT_MIN, bool $inclusive = self::NOT_INCLUSIVE, iterable $options = null)
     {
-        $this->min         = $this->convertNumericValueToFloat($min, self::OPT_MIN);
-        $this->inclusive   = $inclusive;
-        $this->isCountable = new IsCountable($options);
-        parent::__construct(...$this->getValidOptionsForParent($options));
+        $min = $this->convertNumericValueToFloat($min, self::OPT_MIN);
+        parent::__construct(...$this->createProperties($options, compact('min', 'inclusive')));
         $this->initErrorMessagesTemplates(
             [
                 self::E_NOT_GREATER_THAN           => 'The checked value "%value%" is less than the minimum allowed value "%min%"!',
@@ -48,6 +50,7 @@ final class GreaterThan extends Abstracts\Validator implements Interfaces\Min, I
             ]
         );
         $this->initErrorMessagesVars([self::OPT_MIN => $this->min]);
+        $this->isCountable = new IsCountable($options);
     }
 
     /**

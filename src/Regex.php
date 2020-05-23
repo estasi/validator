@@ -4,20 +4,25 @@ declare(strict_types=1);
 
 namespace Estasi\Validator;
 
-use Estasi\Utility\Interfaces\VariableType;
-use Estasi\Utility\Traits\ConvertPatternHtml5ToPCRE;
+use Estasi\Utility\{
+    Interfaces\VariableType,
+    Traits\GetPatternsHtml5AndPcre
+};
 
+use function compact;
 use function is_string;
 use function preg_match;
 
 /**
  * Class Regex
  *
+ * @property-read array<string, string> $pattern ['pcre' => 'string', 'html' => 'string']
+ * @property-read int                   $offset
  * @package Estasi\Validator
  */
 final class Regex extends Abstracts\Validator
 {
-    use ConvertPatternHtml5ToPCRE;
+    use GetPatternsHtml5AndPcre;
 
     // names of constructor parameters to create via the factory
     public const OPT_PATTERN = 'pattern';
@@ -28,9 +33,6 @@ final class Regex extends Abstracts\Validator
     public const E_EMPTY_PATTERN = 'eEmptyPattern';
     public const E_ERROROUS      = 'eRegexErrorous';
     public const E_NOT_MATCH     = 'eRegexNotMatch';
-
-    private string $pattern;
-    private int    $offset;
 
     /**
      * Regex constructor.
@@ -45,9 +47,8 @@ final class Regex extends Abstracts\Validator
      */
     public function __construct(string $pattern, int $offset = self::OFFSET_ZERO, iterable $options = null)
     {
-        $this->pattern = $this->convertPatternHtml5ToPCRE($pattern);
-        $this->offset  = $offset;
-        parent::__construct(...$this->getValidOptionsForParent($options));
+        $pattern = $this->getPatternsHtml5AndPCRE($pattern);
+        parent::__construct(...$this->createProperties($options, compact('pattern', 'offset')));
         $this->initErrorMessagesTemplates(
             [
                 self::E_EMPTY_PATTERN => 'The pattern must not be an empty string!',
@@ -75,13 +76,13 @@ final class Regex extends Abstracts\Validator
             return false;
         }
 
-        if (empty($this->pattern)) {
+        if (empty($this->pattern['pcre'])) {
             $this->error(self::E_EMPTY_PATTERN);
 
             return false;
         }
 
-        switch (preg_match($this->pattern, $value, $matches, 0, $this->offset)) {
+        switch (preg_match($this->pattern['pcre'], $value, $matches, 0, $this->offset)) {
             case 0:
                 $this->error(self::E_NOT_MATCH, [self::MESSAGE_VAR_VALUE => $value]);
 

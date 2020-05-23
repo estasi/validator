@@ -30,7 +30,7 @@ final class IsCountable extends Abstracts\Validator
      */
     public function __construct(iterable $options = null)
     {
-        parent::__construct(...$this->getValidOptionsForParent($options));
+        parent::__construct(...$this->createProperties($options));
         $this->initErrorMessagesTemplates(
             [self::E_NOT_COUNTED => 'In the "%dataType%" data type, the number of elements cannot be counted!']
         );

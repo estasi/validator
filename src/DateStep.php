@@ -95,7 +95,7 @@ final class DateStep extends Abstracts\Validator
         /** @noinspection PhpFieldAssignmentTypeMismatchInspection */
         $this->startDate = $this->createDateTimeImmutable($startDate, true);
 
-        parent::__construct(...$this->getValidOptionsForParent($options));
+        parent::__construct(...$this->createProperties($options));
         $this->initErrorMessagesTemplates(
             [self::E_NOT_STEP => 'The checked date "%value%" does not match the specified step "%step%" from the initial date "%startDate%"!']
         );

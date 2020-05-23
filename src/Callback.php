@@ -47,7 +47,7 @@ final class Callback extends Abstracts\Validator
     ) {
         $this->callback = $callback;
         $this->params   = new Vector($params ?? []);
-        parent::__construct(...$this->getValidOptionsForParent($options));
+        parent::__construct(...$this->createProperties($options));
         $this->initErrorMessagesTemplates(
             [
                 self::E_INVALID_CALLBACK => 'An exception has been raised within the callback!',

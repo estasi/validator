@@ -70,7 +70,7 @@ final class Ip extends Abstracts\Validator
         iterable $options = null
     ) {
         $this->filterOptions = $IPVersion | $forbiddenRanges;
-        parent::__construct(...$this->getValidOptionsForParent($options));
+        parent::__construct(...$this->createProperties($options));
         $this->initErrorMessagesTemplates([self::E_INVALID_IP => 'IP address "%value%" is not correct!']);
         $this->initErrorMessagesVars([self::MESSAGE_VAR_TYPES_EXPECTED => VariableType::STRING]);
     }

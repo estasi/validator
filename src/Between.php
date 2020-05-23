@@ -6,6 +6,7 @@ namespace Estasi\Validator;
 
 use RuntimeException;
 
+use function compact;
 use function sprintf;
 
 use const PHP_INT_MAX;
@@ -14,6 +15,10 @@ use const PHP_INT_MIN;
 /**
  * Class Between
  *
+ * @property-read int  $min
+ * @property-read bool $minInclusive
+ * @property-read int  $max
+ * @property-read bool $maxInclusive
  * @package Estasi\Validator
  */
 final class Between extends Abstracts\Validator implements Interfaces\Min, Interfaces\Max, Interfaces\Inclusive
@@ -21,7 +26,9 @@ final class Between extends Abstracts\Validator implements Interfaces\Min, Inter
     use Traits\ConvertNumericValueToFloat;
 
     // names of constructor parameters to create via the factory
+    public const OPT_MIN           = 'min';
     public const OPT_MIN_INCLUSIVE = 'minInclusive';
+    public const OPT_MAX           = 'max';
     public const OPT_MAX_INCLUSIVE = 'maxInclusive';
 
     private GreaterThan $greaterThan;
@@ -39,6 +46,8 @@ final class Between extends Abstracts\Validator implements Interfaces\Min, Inter
      * @param iterable<string, mixed>|null $options      Secondary validator options, such as the Translator, the
      *                                                   length of the error message, hiding the value being checked,
      *                                                   defining your own error messages, and so on
+     *
+     * @throws \RuntimeException if min is greater than max
      */
     public function __construct(
         $min = PHP_INT_MIN,
@@ -46,14 +55,17 @@ final class Between extends Abstracts\Validator implements Interfaces\Min, Inter
         $max = PHP_INT_MAX,
         bool $maxInclusive = self::NOT_INCLUSIVE,
         iterable $options = null
-    ) {
-        parent::__construct();
-
+    )
+    {
         $min = $this->convertNumericValueToFloat($min, self::OPT_MIN);
         $max = $this->convertNumericValueToFloat($max, self::OPT_MAX);
         if ($min > $max) {
             throw new RuntimeException(sprintf('Invalid comparison interval: %s > %s!', $min, $max));
         }
+
+        parent::__construct(
+            ...$this->createProperties($options, compact('min', 'minInclusive', 'max', 'maxInclusive'))
+        );
 
         $this->greaterThan = new GreaterThan($min, $minInclusive, $options);
         $this->lessThan    = new LessThan($max, $maxInclusive, $options);

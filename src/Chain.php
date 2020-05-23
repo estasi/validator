@@ -10,8 +10,6 @@ use Estasi\Utility\{
     Traits\Errors,
     Traits\TopPriority
 };
-use Estasi\Validator\Interfaces\PluginManager;
-use Estasi\Validator\Interfaces\Validator;
 use InvalidArgumentException;
 
 use function is_iterable;
@@ -25,21 +23,21 @@ use function sprintf;
  */
 final class Chain implements Interfaces\Chain
 {
-    use Traits\Validation;
     use Errors;
     use TopPriority;
+    use Traits\Validation;
 
-    private ?PluginManager $pluginManager;
-    private PriorityQueue  $validators;
+    private ?Interfaces\PluginManager $pluginManager;
+    private PriorityQueue             $validators;
 
     /**
      * @inheritDoc
      */
     public function __construct(
-        ?PluginManager $pluginManager = self::DEFAULT_PLUGIN_MANAGER,
+        ?Interfaces\PluginManager $pluginManager = self::DEFAULT_PLUGIN_MANAGER,
         ...$validators
     ) {
-        $this->pluginManager = $pluginManager ?? new \Estasi\Validator\PluginManager();
+        $this->pluginManager = $pluginManager ?? new PluginManager();
         $this->putAll($validators);
     }
 
@@ -154,7 +152,7 @@ final class Chain implements Interfaces\Chain
             $validator = $this->pluginManager->getValidator($validator, $options ?? []);
         }
 
-        if (false === $validator instanceof Validator) {
+        if (false === $validator instanceof Interfaces\Validator) {
             throw new InvalidArgumentException(
                 sprintf(
                     'The validator is not valid! Expected: "string" - the name of the filter, "array" - containing the filter name or "object" implementing "%s"!',

@@ -8,12 +8,15 @@ use Estasi\Utility\Interfaces\VariableType;
 use RangeException;
 
 use function abs;
+use function compact;
 use function fmod;
 use function is_numeric;
 
 /**
  * Class Step
  *
+ * @property-read float $step
+ * @property-read float $startingPoint
  * @package Estasi\Validator
  */
 final class Step extends Abstracts\Validator
@@ -28,9 +31,6 @@ final class Step extends Abstracts\Validator
     public const ZERO_POINT_OF_REFERENCE = 0.0;
     // error code
     public const E_NOT_STEP = 'eNotStep';
-
-    private float $step;
-    private float $startingPoint;
 
     /**
      * Step constructor.
@@ -47,14 +47,15 @@ final class Step extends Abstracts\Validator
         $step = self::DEFAULT_STEP_ONE,
         $startingPoint = self::ZERO_POINT_OF_REFERENCE,
         iterable $options = null
-    ) {
-        $this->step          = $this->convertNumericValueToFloat($step, self::OPT_STEP);
-        $this->startingPoint = $this->convertNumericValueToFloat($startingPoint, self::OPT_STARTING_POINT);
-        if (0.0 === $this->step) {
+    )
+    {
+        $step          = $this->convertNumericValueToFloat($step, self::OPT_STEP);
+        $startingPoint = $this->convertNumericValueToFloat($startingPoint, self::OPT_STARTING_POINT);
+        if (0.0 === $step) {
             throw new RangeException('Step must not be zero!');
         }
 
-        parent::__construct(...$this->getValidOptionsForParent($options));
+        parent::__construct(...$this->createProperties($options, compact('step', 'startingPoint')));
         $this->initErrorMessagesTemplates(
             [self::E_NOT_STEP => 'The checked value "%value%" does not match the step "%step%" from the initial value "%startingPoint%"!']
         );

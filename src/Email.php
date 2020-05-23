@@ -9,6 +9,7 @@ use Estasi\Utility\{
     Interfaces\VariableType
 };
 
+use function compact;
 use function filter_var;
 use function idn_to_ascii;
 use function is_string;
@@ -27,6 +28,7 @@ use const FILTER_FLAG_EMAIL_UNICODE;
  *
  * @link    https://www.php.net/manual/en/filter.filters.validate.php
  *
+ * @property-read bool $allowUnicode
  * @package Estasi\Validator
  */
 final class Email extends Abstracts\Validator
@@ -39,8 +41,6 @@ final class Email extends Abstracts\Validator
     // error code
     public const E_INVALID_EMAIL = 'eInvalidEmail';
 
-    private bool $allowUnicode;
-
     /**
      * Email constructor.
      *
@@ -51,8 +51,7 @@ final class Email extends Abstracts\Validator
      */
     public function __construct(bool $allowUnicode = self::DISABLE_UNICODE, iterable $options = null)
     {
-        $this->allowUnicode = $allowUnicode;
-        parent::__construct(...$this->getValidOptionsForParent($options));
+        parent::__construct(...$this->createProperties($options, compact('allowUnicode')));
         $this->initErrorMessagesTemplates([self::E_INVALID_EMAIL => 'Email "%value%" is not correct!']);
         $this->initErrorMessagesVars([self::MESSAGE_VAR_TYPES_EXPECTED => [VariableType::STRING, Uri::class]]);
     }

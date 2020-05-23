@@ -10,6 +10,7 @@ use Estasi\Utility\{
 };
 
 use function boolval;
+use function compact;
 use function gettype;
 use function is_iterable;
 use function is_null;
@@ -17,6 +18,8 @@ use function is_null;
 /**
  * Class Identical
  *
+ * @property-read mixed $token
+ * @property-read bool  $strict
  * @package Estasi\Validator
  */
 final class Identical extends Abstracts\Validator
@@ -30,10 +33,6 @@ final class Identical extends Abstracts\Validator
     // errors codes
     public const E_MISSING_TOKEN = 'eMissingToken';
     public const E_NOT_SAME      = 'eNotSame';
-
-    /** @var mixed */
-    private      $token;
-    private bool $strict;
 
     /**
      * Identical constructor.
@@ -49,9 +48,7 @@ final class Identical extends Abstracts\Validator
      */
     public function __construct($token, bool $strict = self::NON_STRICT_IDENTITY_VERIFICATION, iterable $options = null)
     {
-        $this->token  = $token;
-        $this->strict = $strict;
-        parent::__construct(...$this->getValidOptionsForParent($options));
+        parent::__construct(...$this->createProperties($options, compact('token', 'strict')));
         $this->initErrorMessagesTemplates(
             [
                 self::E_MISSING_TOKEN => 'A token was not found to compare the value!',

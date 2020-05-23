@@ -80,7 +80,7 @@ final class Uri extends Abstracts\Validator
     {
         $this->uriHandler = UriFactory::make(UriFactory::WITHOUT_URI, $uriHandler);
         $this->setFlags($flags);
-        parent::__construct(...$this->getValidOptionsForParent($options));
+        parent::__construct(...$this->createProperties($options));
         $this->initErrorMessagesTemplates(
             [
                 self::E_INVALID_URI                => 'The checked uri "%value%" is not a valid uri with the specified verification settings!',
