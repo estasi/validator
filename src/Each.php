@@ -46,7 +46,7 @@ final class Each extends Abstracts\Validator
     ) {
         $this->validator = $validator;
         $this->delimiter = $delimiter;
-        parent::__construct(...$this->getValidOptionsForParent($options));
+        parent::__construct(...$this->createProperties($options));
         $this->initErrorMessagesVars(
             [
                 self::MESSAGE_VAR_TYPES_EXPECTED => [

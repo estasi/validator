@@ -14,15 +14,4 @@ use Estasi\PluginManager\Abstracts;
 final class PluginManager extends Abstracts\PluginManager implements Interfaces\PluginManager
 {
     use Traits\PluginManager;
-
-    /**
-     * @inheritDoc
-     */
-    public function getValidator(string $name, iterable $options = null): Interfaces\Validator
-    {
-        /** @var \Estasi\Validator\Interfaces\Validator $validator */
-        $validator = $this->build($name, $options);
-
-        return $validator;
-    }
 }

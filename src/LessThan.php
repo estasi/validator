@@ -47,7 +47,7 @@ final class LessThan extends Abstracts\Validator implements Interfaces\Max, Inte
                 self::E_NOT_LESS_THAN_INCLUSIVE => 'The checked value "%value%" is greater than the maximum value "%max%"!',
             ]
         );
-        $this->initErrorMessagesVars([self::OPT_MAX => $this->max]);
+        $this->initErrorMessagesVars([self::OPT_MAX => $max]);
         $this->isCountable = new IsCountable($options);
     }
 

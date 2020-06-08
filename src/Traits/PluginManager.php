@@ -38,7 +38,6 @@ use Estasi\Validator\{
  */
 trait PluginManager
 {
-
     /**
      * @inheritDoc
      */
@@ -85,5 +84,16 @@ trait PluginManager
             new Plugin(UUID::class, ['uuid', 'UUID']),
             new Plugin(Each::class, ['each', 'Each'])
         );
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getValidator(string $name, iterable $options = null): Validator
+    {
+        /** @var \Estasi\Validator\Interfaces\Validator $validator */
+        $validator = $this->build($name, $options);
+
+        return $validator;
     }
 }

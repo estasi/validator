@@ -32,6 +32,15 @@
 - Property read _string_ `StringLength->encoding`
 - Now when initializing the `Estasi\Validator\StringLength` class if min is greater than max an exception is thrown `\RuntimeException`
 
+### Changed
+
+- Method `PluginManager::getValidator` moved to trait `Traits\PluginManager`
+
+### Fixed
+
+- Error during class initialization `GreaterThan`
+- Error during class initialization `LessThan`
+
 ## 1.1.0
 
 ### Added

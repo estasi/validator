@@ -14,13 +14,13 @@ use Estasi\Utility\{
     Traits\Disable__callStatic,
     Traits\Disable__set,
     Traits\Errors,
+    Traits\Properties__get,
     Traits\ReceivedTypeForException
 };
 use Estasi\Validator\{
     Interfaces\Validator as ValidatorInterface,
     Traits\Validation
 };
-use OutOfBoundsException;
 
 use function compact;
 use function get_class;
@@ -51,6 +51,7 @@ abstract class Validator implements ValidatorInterface
     use Disable__set;
     use Disable__call;
     use Disable__callStatic;
+    use Properties__get;
     use ReceivedTypeForException;
 
     // names of constructor parameters to create via the factory
@@ -108,17 +109,6 @@ abstract class Validator implements ValidatorInterface
 
         $this->initErrorMessagesTemplates([self::E_INVALID_TYPE => 'The data type is not valid. Expected: "%types%"!']);
         $this->initErrorMessagesVars([]);
-    }
-
-    public function __get($name)
-    {
-        if ($this->properties->hasKey($name)) {
-            return $this->properties->get($name);
-        }
-
-        throw new OutOfBoundsException(
-            sprintf('The "%s" property of the class "%s" is undefined!', $name, static::class)
-        );
     }
 
     /**

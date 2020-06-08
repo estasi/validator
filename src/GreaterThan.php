@@ -49,7 +49,7 @@ final class GreaterThan extends Abstracts\Validator implements Interfaces\Min, I
                 self::E_NOT_GREATER_THAN_INCLUSIVE => 'The checked value "%value%" is less than or equal to the minimum allowed value "%min%"!',
             ]
         );
-        $this->initErrorMessagesVars([self::OPT_MIN => $this->min]);
+        $this->initErrorMessagesVars([self::OPT_MIN => $min]);
         $this->isCountable = new IsCountable($options);
     }
 
